@@ -33,8 +33,8 @@ b = a[:]
 b[0] = 999
 b[2][1] = 100
 
-print(a)
-print(b)
+print(a)   # [1, 2, [3, 100, 5]]
+print(b)   # [999, 2, [3, 100, 5]]
 
 # 깊은 복사
 import copy

@@ -7,12 +7,12 @@ def enclosed():
     c = 3
 
     def local(c):
-        print(a, b, c)  #
+        print(a, b, c)  # 10 2 500
 
     local(500)
-    print(a, b, c)  #
+    print(a, b, c)  # 10 2 3
 
 
 enclosed()
 
-print(a, b)  #
+print(a, b)  # 1 2
