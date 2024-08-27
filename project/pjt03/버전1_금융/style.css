@@ -1,0 +1,18 @@
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 480;
+  font-style: normal;
+}
+
+.intro,
+.skills,
+.projects,
+.contact {
+  height: 300px;
+}
+
+.skills,
+.contact {
+  background-color: #f0f0f0;
+}
