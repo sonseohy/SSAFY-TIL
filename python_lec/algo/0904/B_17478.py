@@ -22,6 +22,8 @@ def question(i):
     if i == N:
         print_dash(i)
         print('"재귀함수는 자기 자신을 호출하는 함수라네"')
+        print_dash(i)
+        print('라고 답변하였지.')
         return
     answer1(i)
     question(i+1)
