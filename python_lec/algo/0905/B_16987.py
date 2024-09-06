@@ -80,7 +80,7 @@
 #         if i != idx and eggs[i][0] > 0:
 #             eggs[idx][0] = EGGS[idx][0] - EGGS[i][1] # 내 내구도
 #             eggs[i][0] = EGGS[i][0] - EGGS[idx][1] # 남의 내구도
-#             if eggs[i][0] <= 0:
+#             if eggs[i][0] <= 0: # 끝까지 계란을 봐야하기 때문에 사용 X
 #                 cnt = count_kkang(eggs)
 #                 if cnt > result:
 #                     result = cnt
