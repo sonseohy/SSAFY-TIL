@@ -36,7 +36,7 @@ def pinball(sti, stj, k):
     di = [0, 1, 0, -1]
     dj = [1, 0, -1, 0]
 
-    for _ in range(N*N):
+    while True:
         ni = sti + di[k]
         nj = stj + dj[k]
         if 0 <= ni < N and 0 <= nj < N:
