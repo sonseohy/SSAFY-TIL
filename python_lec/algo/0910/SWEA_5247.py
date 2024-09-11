@@ -4,25 +4,23 @@ sys.stdin = open('input.txt', 'r')
 from collections import deque
 # 연산의 중간 결과도 항상 백만 이하의 자연수여야 함
 def bfs(value):
-    cnt = 0
-    q = []
+    q = deque()
     visited = [False] * 1000001
 
-    q.append(value)
+    q.append([value, 0])
     visited[value] = True
 
     while q:
-        value = q.popleft()
+        value, cnt = q.popleft()
         if value == M:
             return cnt
 
         for value in [value*2, value-10, value+1, value-1]:
             if 0 < value <= 1000000 and not visited[value]:
-                q.append(value, cnt+1)
+                q.append([value, cnt+1])
                 visited[value] = True
 
     return cnt
-
 
 
 T = int(input())
