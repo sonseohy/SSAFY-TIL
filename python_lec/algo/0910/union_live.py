@@ -24,9 +24,9 @@ def union(x, y):
     # 다른 집합이라면 더 작은 루트노드에 합친다
     # 문제에 따라 다르지만 우선은 더 작은 노드로 합침
     if root_x < root_y:
-        parents[y] = root_x # y가 바라보는 부모는 x의 대표자
+        parents[root_y] = root_x # y가 바라보는 부모는 x의 대표자
     else:
-        parents[x] = root_y
+        parents[root_x] = root_y
 
 n = 7   # 원소의 개수
 parents = make_set(n)   # 집합생성. parents에 부모 정보들을 저장
