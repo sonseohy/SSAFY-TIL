@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>메인 페이지</h1>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for movie in movies %}
+    <div class="col">
+      <div class="card h-100">
+        {% if movie.Movie_image %}
+          <img src="{{ movie.Movie_image.url }}" class="card-img-top" alt="movie-image">  
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.Title }}</h5>
+          <p class="card-text">{{ movie.Description }}</p>
+          <a href="{% url "movies:detail" movie.pk %}" class="btn btn-primary">Detail</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock content %}

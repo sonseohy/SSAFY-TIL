@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>영화 상세 페이지</h1>
+  {% if movie.Movie_image %}
+    <img src="{{ movie.Movie_image.url }}" alt="moive-image">
+  {% endif %}
+  <h3>{{ movie.Title }}</h3>
+  <p>{{ movie.Description }}</p>
+  <hr>
+  <form action="{% url "movies:delete" movie.pk %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url "movies:update" movie.pk %}" class="btn btn-secondary">UPDATE</a>
+    <input type="submit" value="DELETE" class="btn btn-danger">
+  </form>
+  <hr>
+  <a href="{% url "movies:index" %}" class="btn btn-primary">BACK</a>
+{% endblock content %}
+
