@@ -1,6 +1,6 @@
 ## Branch Scenario
 
-###
+### 개요
 - Branch 장점
 1. 독립된 개발 환경을 형성하기 때문에 원본(master)에 대해 안전
 2. 하나의 작업은 하나의 브런치로 나누어 
@@ -26,7 +26,7 @@
 - git switch <다른 브랜치 이름> : 다른 브랜치로 전환
 - git switch -c <브랜치 이동> : 새 브랜치 생성 후 전환
 - git switch -c <브랜치 이동> <existing-branch-name> : 특정 커밋(<existing-branch-name>)에서 현재의 커밋 기준으로 새 브랜치 생성하고 전환 
-- 주의 사항 : 
+- 주의 사항 : git add를 하지 않았던, Staging area에 한 번도 올라가지 않은ㄴ 새파일은 브랜치가 바뀌더라도 계속 유지됨 (관리되는 항목이 아니기 때문) 
 
 ### HEAD
 - 현재 브랜치나 commit을 가리키는 포인터 (현재 내가 바라보는 위치)
@@ -46,7 +46,60 @@
 
 ### branch에서 commit 생성
 1. login 브랜치에서 article.txt 파일 수정 (login1 작성)
-2. 추가적으로 test_login.txt도 
+![alt text](image-7.png)
+2. test.txt를 새로 생성 후 
+
+### git merge
+- git merge <병합 브랜치 이름> : merge 명령어
+- 병합 전 확인 및 주의사항
+  1. 수신 브랜치(병합 브랜치를 가져오고자 하는 브랜치) 확인하기
+  - git branch 명령어를 통해 HEAD가 올바른 수신 브랜치를 가리키는지 확인
+  - 병합 진행 위치는 반드시 수신 브랜치에서 진행되어야 함
+  2. 최신 commit 상태 확인하기
+  - 수신 브랜치와 병합 브랜치 모두 최신 상태인지 확인
+- metge 종류
+  1. Fast-Forword Merge
+  2. 3-Way Merge
+
+### Fast-Forword Merge
+- 브랜치를 "실제로" 병합하는 대신 
+- merge 과정 없이 단순히 브랜치의 포인터가 앞으로 이동
+1. fast.forward.practice 폴더 생성
+2. 생성한 폴더로 이동
+3. VSCode 실행
+4. Git 저장소 생성 : git init으로 git 저장소 생성
+![alt text](image-8.png)
+5. article.txt 파일 생성 : touch article.txt
+![alt text](image-9.png)
+6. hotfix 브랜치 생성
+- git switch -c hotfix : 브랜치 생성과 HEAD를 생성한 브랜치로 돌리는 것을 동시에 하는 코드
+![alt text](image-10.png)
+7. HEAD가 hotfix인 상태에서 파일 수정 후 add, commit
+![alt text](image-11.png)
+![alt text](image-12.png)
+8. master 브랜치로 이동 후 merge 진행
+![alt text](image-13.png)
+9. merge 후 hotfix 브랜치는 필요 없으므로 삭제
+![alt text](image-14.png)
+
+### 3-Way Merge
+- 병합하는 각 브랜치의 commit 2개와 공통 조상 commit 하나를
+1. 폴더 생성
+2. 생성한 폴더로 이동
+3. VSCode 실행
+4. Git 저장소 생성 : git init으로 git 저장소 생성
+5. hotfix.txt 파일 생성 : touch hotfix.txt
+6. hotfix 브랜치 생성
+- git switch -c hotfix : 브랜치 생성과 HEAD를 생성한 브랜치로 돌리는 것을 동시에 하는 코드
+7. HEAD가 hotfix인 상태에서 파일 수정 후 add, commit
+8. branch를 master로 전환 후 master에 있는 txt파일 수정 후 add, commit
+![alt text](image-15.png)
+9. master를 기준으로 merge : hotfix 브랜치를 master 브랜치로 병합 진행
+![alt text](image-16.png)
+10. merge 후 hotfix 브랜치는 필요 없으므로 삭제
+![alt text](image-17.png)
+
+### merge conflict
 
 ### 사전준비 1
 1. git-branch-practice 폴더 생성 : mkdir git-branch-practice
@@ -62,5 +115,5 @@
 - git branch : 현재 만들어진 branch 목록을 보여줌
 - master는 배포된 상태 저장하는데 주로 사용
 
-### 사전준비 3
-1. 
+### Fork
+- 특징 : 원본 저장소와 연결을 유지하면서 독립적인 복사본을 만듦

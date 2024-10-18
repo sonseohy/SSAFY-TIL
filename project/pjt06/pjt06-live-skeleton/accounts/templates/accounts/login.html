@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% comment %} login.html을 렌더링하는 경로 : http://127.0.0.1:8000/accounts/login/
+login POST 요청을 보낼 경로 : http://127.0.0.1:8000/accounts/login/
+즉, 현재 경로에 그대로 POST 요청을 그대로 보내면 된다.
+form action을 비워둬도 된다. {% endcomment %}
+
+
+{% comment %}
+login.html을 렌더링하는 경로 : http://127.0.0.1:8000/accounts/login/?next=/boards/create/
+login POST 요청을 보낼 경로 : http://127.0.0.1:8000/accounts/login/
+경로 뒤에 /?next=/boards/create/가 붙을 경우 action에 login을 보내면 뒷 주소가 날라가므로 action 비워두는 것이 좋음
+ {% endcomment %}
+
+{% block content %}
+  <h1>로그인</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-light">Login</button>
+  </form>
+{% endblock content %}
+

@@ -1,0 +1,3 @@
+- sqliteviewer extensions
+- db.sqlite3를 누르면 db연결하지 않고도 바로 db 볼 수 있음
+- 단, 새로고침을 매번 해줘야 함
