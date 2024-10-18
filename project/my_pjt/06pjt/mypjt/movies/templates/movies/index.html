@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>INDEX PAGE</h1>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for movie in movies %}
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-header">
+            {{ movie.title }}
+          </div>
+          <div class="card-body">
+            <p class="card-text"><a href="{% url "movies:detail" movie.pk %}">DETAIL</a></p>
+            <div class="d-flex align-items-center">
+              {% comment %} 댓글 개수 표시 {% endcomment %}
+              <div class="col-auto me-auto"><p> 💬 {{ movie.comment_set.count }}</p></div>
+              {% comment %} 좋아요 {% endcomment %}
+              <div class="col-auto">
+                <form action="{% url "movies:likes" movie.pk %}" method="POST">
+                  {% csrf_token %}
+                  {% if request.user in movie.like_user.all %}
+                    <button class="btn btn-danger" style="float: right; border-radius: 20px;" type="submit">♥</button>
+                  {% else %}
+                  <button class="btn btn-danger" style="float: right; border-radius: 20px;" type="submit">♡</button>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
+

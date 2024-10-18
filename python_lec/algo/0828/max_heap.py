@@ -39,7 +39,7 @@ def deq():
             h[p], h[c] = h[c], h[p]
             p = c
             c = p*2
-        else:
+        else:       # 더 이상 부모가 작은 경우가 없을 때 (제자리를 찾았을 때)
             break
     return tmp  # 제일 첫번째 값은 return
 
