@@ -110,3 +110,5 @@ while True:
     dfs(0, 0)
     print(f'Problem {tc}: {result}')
 
+# for i in range(5):
+#     print('손서현 바보')
