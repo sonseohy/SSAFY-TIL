@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const names = ['Alice', 'Bella', 'Cathy']
+
+    // 일반 함수 표기
+    // 이 함수에서 this를 쓰면 함수를 호출하기 때문에 this는 window를 가리키게 됨
+    names.forEach(function (name) {
+      console.log(name)
+    })
+    
+    // 화살표 함수 표기
+    // 이 함수에서 this를 쓰면 화살표 함수는 자신만의 this를 가질 수 없기 때문에 this가 앞의 객체를 가리킴
+    names.forEach((name) => {
+      console.log(name)
+    })
+
+    // 활용
+    names.forEach((name, index, array) => {
+      console.log(name, index, array)
+    })
+
+
+    // 인덱스만 출력하고 싶다면
+    names.forEach((name, index, array) => {
+      console.log(index)
+    })
+  </script>
+</body>
+
+</html>

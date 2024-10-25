@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // forEach를 사용하여 다음 작업을 수행하세요:
+    // 1. 짝수는 2배로 증가
+    // 2. 홀수는 3을 더하기
+    // 결과를 새 배열에 저장
+    const numbers = [1, 2, 3, 4, 5]
+
+    // const는 재선언과 재할당이 안됨
+    // 리스트에 값을 추가하고 빼는 것은 재선언과 재할당에 해당되지 않음
+    // const로 빈 배열 선언 후 값 변경 가능
+    // result에 값을 추가하고 빼는 것이 주소값이 바뀌는 것은 아님
+    const result = []
+
+    numbers.forEach((number) => {
+      // 1. 짝수면 2배 곱
+      if (number % 2 == 0) {
+        result.push(number * 2)
+      } else {
+        result.push(number + 3)
+      }
+    })
+
+    console.log(result)
+
+
+    // 결과
+    // [4, 4, 6, 8, 8]
+  </script>
+</body>
+
+</html>

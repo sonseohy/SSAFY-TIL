@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const func1 = function() {
+      console.log('func1', this)
+    }
+
+    const func2 = () => {
+      console.log('func2', this)
+    }
+    
+    func1() // window
+    func2() // window
+
+    const obj = {
+      fn1: func1,
+      fn2: func2,
+      fn3: function () {
+        console.log('func3', this)
+      },
+      fn4: () => {
+        console.log('func4', this)  // 선언된 곳의 밖의 밖
+      },
+      fn5: function () {
+        const numbers = [1, 2]
+        numbers.forEach(function (number) {
+          console.log('func5', this)  // 콜백 함수 안에 쓰는 this는 object가 아님 (콜백함수는 window가 실행)
+        })
+      },
+      fn6: function () {
+        const numbers = [1, 2]
+        numbers.forEach((item)=>{
+          console.log('func6', this)  // fn5와 달리 동적 바인딩 되지 않음 (선언된 곳의 밖의 밖)
+        })
+      }
+    }
+
+    obj.fn1() // obj
+    obj.fn2() // window
+    obj.fn3() // obj
+    obj.fn4() // window
+    obj.fn5() // window
+    obj.fn6() // obj
+
+    // --------------------------------------------
+    const numbers = [1, 2, 3, -1, 4, 5, 6]
+    numbers.forEach((num, index) => {
+      console.log(num)
+      // return이 없다. return을 쓰면 무시됨
+    })
+
+    let new_numbers = numbers.map((item, index) => {
+      // item 하나에 대한 처리 결과를 return
+      return item * item
+    })
+    console.log(new_numbers)
+
+    // 조건에 맞는 새로운 배열(홀수인 배열)을 만든다.
+    // map은 입력 개수와 출력 개수가 같을 때 쓰는 것이 좋음
+    // filter는 입력 개수와 출력 개수가 다를 때 쓰는 것이 좋음
+    new_numbers = numbers.filter((item, index) => {
+      // true인 결과를 return
+      // return item % 2 == 1
+      return item % 2 == 0
+    })
+
+    // 조건에 맞는 item을 찾아준다.
+    numbers.find(() => {})
+
+    // reduce 전체를 반복해서 값 하나를 만듦
+    // acc : 누적할 변수, item : 값 하나
+    numbers.reduce((acc, item) => {
+      return acc + item
+    }, 0) // 인자를 두개 넘겨주는데 두번째 인자는 초기값 넣어줌, 합이면 0, 곱이면 1
+  </script>
+</body>
+</html>
