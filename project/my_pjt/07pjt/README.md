@@ -95,3 +95,17 @@ def movie_search(request):
 - movies 쿼리셋을 직렬화하기 위해 MovieSearchSerializers를 사용하고, many=True로 여러 개의 영화 객체를 직렬화
 - if not movies에서 영화가 없는 경우 "영화가 없습니다."라는 메시지를 포함한 404 Not Found 상태 코드를 반환한다.
 - 모든 처리가 정상적으로 완료되었을 경우, 직렬화된 영화 데이터를 반환하며, 상태 코드는 200 OK로, 요청이 성공적으로 처리되었음을 나타낸다.
+
+- 방법2
+```python
+@api_view(['GET'])
+def movie_search(request, movie_title):
+    # URL 경로에서 받은 영화 제목을 사용해 검색
+    movies = Movie.objects.filter(title__icontains=movie_title)
+    if len(movies) > 0: 
+    # 영화 목록을 직렬화해서 반환해요
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+    else:
+        return Response({ 'msg' : f'[{movie_title}] 와 일치하는 영화가 없습니다.'})
+```
