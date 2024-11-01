@@ -53,7 +53,7 @@ def comment_detail(request, comment_pk):
     # 단일 댓글 조회
     comment = Comment.objects.get(pk=comment_pk)
     if request.method == 'GET':
-        # 단일 댓굴 직렬화 진행
+        # 단일 댓글 직렬화 진행
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
     elif request.method == 'DELETE':
