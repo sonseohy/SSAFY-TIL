@@ -16,7 +16,7 @@
 
     <!-- 오프캔버스 -->
     <div
-      class="offcanvas offcanvas-start"
+      class="offcanvas offcanvas-start custom-offcanvas"
       tabindex="-1"
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
@@ -31,6 +31,18 @@
         ></button>
       </div>
       <div class="offcanvas-body">
+        <!-- 검색 폼 추가 -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="form-control search-input"
+            placeholder="Search movie"
+          />
+          <button class="search-button">
+            <i class="fa-solid fa-magnifying-glass"></i> <!-- 검색 아이콘 (Bootstrap Icons) -->
+          </button>
+        </div>
+
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <RouterLink :to="{ name: 'MovieList' }" class="nav-link">Recommend</RouterLink>
@@ -144,4 +156,70 @@
   font-weight: 600;
   color: #2AA971 !important;
 }
+
+/* 오프캔버스 커스터마이징 */
+.custom-offcanvas {
+  height: 100vh; /* 전체 화면 높이 */
+  width: 300px; /* 폭을 적절히 설정 */
+  background: #ffffff; /* 배경색 */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* 오른쪽 그림자 */
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* 고정 위치 */
+}
+
+.custom-offcanvas .offcanvas-header {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+}
+
+.custom-offcanvas .offcanvas-body {
+  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
+  overflow-y: auto; /* 스크롤 가능 */
+  padding: 15px;
+}
+
+/* 검색 입력 스타일 */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-input {
+  border-radius: 30px;
+  padding: 10px 15px;
+  width: 80%;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  box-shadow: none;
+}
+
+.search-input:focus {
+  border-color: #2AA971;
+  box-shadow: 0 0 5px rgba(42, 169, 113, 0.5);
+}
+
+.search-button {
+  background-color: #2AA971;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  color: white;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-button:hover {
+  background-color: #218d58;
+}
+
+.search-button i {
+  font-size: 16px; /* 아이콘 크기 */
+}
+
 </style>
