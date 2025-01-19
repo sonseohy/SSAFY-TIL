@@ -5,6 +5,9 @@ let num = 10;
 let str = "20";
 
 const result = num + str;
+console.log(result)     // 1020이 출력됨
+// 변수 num에 저장된 숫자 값이 덧셈 과정에서 묵시적으로 String 타입으로 형변환이 일어남
+
 
 // 2. 명시적 형 변환
 // -> 프로그래머 내장함수 등을 이용해서 직접 형 변환을 명시
