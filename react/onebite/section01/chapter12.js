@@ -1,21 +1,42 @@
 // 1. 함수 표현식
+// funcA처럼 함수 선언문을 이용해서 함수를 만들지 않고 대신 varB처럼 값으로써 함수를 생ㅅ어하는 방식을 자바스크립트에서는 특별히 함수 표현식이라고 부름
+// 함수 표현식으로 만든 함수들은 값으로써 취급되기 때문에 (호이스팅이 되는 함수 선언문으로 만든 funcA와 달리) 호이스팅의 대상이 되지 않음
+// 콜백 함수 등의 개념에서 아주 유용하게 활용됨
 function funcA() {
-  //   console.log("funcA");
+    console.log("funcA");
 }
 
 let varA = funcA;
-varA();
+console.log(varA);  // 함수 자체가 콘솔에 출력됨
+                    // 자바스크립트에서는 함수도 숫자나 문자열과 같은 하나의 값으로서 취급하기 때문에 함수 자체를 변수에다가 그냥 담아놓을 수 있음
+varA();   // funcA 출력
+          // 함수를 어떤 변수에 담게 되면 함수를 변수의 이름으로 호출해줄 수 있음
 
-let varB = function () {
-  //   console.log("funcB");
+// JS 특징을 이용하면 함수를 굳이 선언하지 않고 그냥 변수에 담듯이 함수를 만들자마자 바로 변수에 담는 것도 가능
+let varB = function funcB() {
+    console.log("funcB");
 };
 
-varB();
+varB(); // funcB 출력
+// 주의! varB에 담긴 함수 funcB의 경우에는 선언식이 아님, 값으로써 함수가 생성된 것이기 때문에 함수의 이름으로는 호출이 불가능
+// 선언식은 어떤 변수의 값으로써 담기지 않은 상태로 유지가 되어야 함
+// 따라서 어차피 이런 식으로 함수를 만들면 함수 이름으로 부르지 못하므로 (변수의 이름으로 불러야 함) 함수를 생성할 때 함수명을 생략해도 전혀 문제가 되지 않음
+
+// 이름이 없는 함수를 익명 함수라고 함
+let noName = function () {
+  console.log("noName");
+};
 
 // 2. 화살표 함수
+// 함수를 이전보다 더 빠르고 간결하게 생성해줄 수 있도록 도와주는 JavaScript 문법
+// 위 noName 코드에서 function 지우고 소괄호와 중괄호 사이에 화살표를 넣어주면 됨
 let varC = (value) => {
   console.log(value);
   return value + 1;
 };
 
 console.log(varC(10));
+
+// 화살표 함수가 값을 반환하기만 한다면 중괄호와 return문도 지워서 사용가능
+// let varC = () => 1;
+// 위 코드는 let varC = () => { return 1; };과 같은 의미
