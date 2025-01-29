@@ -1,29 +1,56 @@
 // 1. Date 객체를 생성하는 방법
+// new 키워드와 함께 대문자 Date라는 내장함수를 호출해서 생성할 수 있음
+// 참고 : new라는 키워드와 함께 새로운 객체를 생성하는 내장함수(여기서는 Date)들을 특별히 생성자라고 부름
+// Date 객체는 생성자 함수에 아무것도 인수로 전달하지 않고(new Date();) 생성하게 되면 현재 지금 시간을 저장하는 date 개게로 생성됨
 let date1 = new Date(); // 생성자
-let date2 = new Date(1997, 1, 7, 23, 59, 59);
+// Date 객체를 특정 날짜 또는 특정 시간을 기준으로 새롭게 생성하고 싶다면 생성자에 인수로 특정 날짜를 넣어주면 됨
+let date2_1 = new Date("1997-01-07"); // 문자열로 명시한 날짜의 형식은 굳이 대시(-)를 쓰지 않아도 .과 띄어쓰기를 쓰거나("1997. 01. 07") 슬래시("1997/01/07")를 사용해도 됨
+// Date 객체에는 날짜 말고도 시간 정보도 함께 설정해줄 수 있음
+// -> 시간은 날짜 뒤에 슬래시(/)를 넣어 준 뒤 아래와 같은 형식(콜론(:)사용)으로 넣어주면 됨
+let date2_2 = new Date("1997/01/07/10:10:10");
+// 인수가 꼭 문자열이 아니더라도 그냥 ,(콤마)로 구분해서 숫자로 넣어줘도 됨
+let date2 = new Date(1997, 1, 7, 23, 59, 59); // year month day hour minute second
 
 // 2. 타임 스탬프
 // 특정 시간이 "1970.01.01 00시 00분 00초"로 부터 몇 ms가 지났는지를 의미하는 숫자값
-let ts1 = date1.getTime();
+// 복잡한 시간 정보를 숫자로 관리할 수 있도록 해주기 때문에 굉장히 편리해서 자주 사용됨
+// 타임 스탬프의 기준이 되는 시각 1970년 1월 1일 00시 00분 00초를 협정 세계시(UTC)라고 부름
+// 참고 : UTC - 세계의 모든 나라가 표준으로 사용하는 시간이 시작되는 지점
+// UTC 시간을 기준으로 현재로부터 몇 밀리세컨드가 지나왔는지 표시하는 숫자값이 타임 스탬프
+// date 객체를 이용하면 타임 스탬프를 쉽게 구할 수 있음
+let ts1 = date1.getTime(); // getTime 메서드 : date 객체 안에 저장되어 있는 시간에 해당하는 타임 스탬프를 계산해서 반환해줌
+// 결론 : ts1이라는 변수에는 협정 세계시인 UTC 타임으로부터 출력값 만큼의 밀리세컨드가 지난 시간이 저장되어 있다는 뜻으로 이해하면됨
+
+// 또 타임 스탬프는 새로운 데이트 객체를 생성하는 데에도 이용될 수 있음
+// new Date()로 새로운 date 객체를 생성하면서 인수로 타임 스탬프 값(ts1)을 전달해주게 되면 해당 타임 스탬프에 해당하는 시간으로 데이트 객체가 생성됨
 let date4 = new Date(ts1);
+console.log(date1, date4); // date4에는 date1과 동일한 시간이 저장되어 있음
+
+// 특별히 타임스탬프에 대해 설명한 이유? 꽤나 복잡한 형태를 가지고 있는 시간 정보를 간단한 숫자로 표현할 수 있기 때문에 서비스 개발에도 자주 사용됨
 
 // 3. 시간 요소들을 추출하는 방법
-let year = date1.getFullYear();
-let month = date1.getMonth() + 1;
-let date = date1.getDate();
+// Date 객체로부터 연도나 월 또는 시, 분, 초 같은 시간 요소들을 추출하는 방법
+// Date 객체는 시간 요ㅇ소를 추출하거나 수정할 수 있는 매우 다양한 메서드들을 제공
+let year = date1.getFullYear(); // 연도를 추출
+let month = date1.getMonth() + 1; // 월을 추출
+let date = date1.getDate(); // 일을 추출
 
-let hour = date1.getHours();
-let minute = date1.getMinutes();
-let seconds = date1.getSeconds();
+let hour = date1.getHours(); // 시 추출
+let minute = date1.getMinutes(); // 분 추출
+let seconds = date1.getSeconds(); // 초 추출
+
+// 1월인데 month 값이 0으로 나옴 -> Why? JavaScript의 월은 0부터 시작하기 때문 (배열 인덱스와 비슷)
+// -> 헷갈릴 수 있으므로 항상 getMonth() 메서드로 추출한 월에는 +1을 해주어 실제로 사용하는 1부터 12까지의 월로 변경해서 사용해야함
 
 // 4. 시간 수정하기
-date1.setFullYear(2023);
-date1.setMonth(2);
-date1.setDate(30);
-date1.setHours(23);
-date1.setMinutes(59);
-date1.setSeconds(59);
+// 시간 수정도 Date 객체의 메서드를 이용
+date1.setFullYear(2023); // 연도 수정 -> 인수로 수정하고 싶은 연도 전달
+date1.setMonth(2); // 월 수정 -> 수정할 월 인수로 전달, 자바스크립트의 월은 0부터 시작하므로 2를 인수로 전달하면 실제로는 3월이 된다.
+date1.setDate(30); // 일 수정
+date1.setHours(23); // 시 수정
+date1.setMinutes(59); // 분 수정
+date1.setSeconds(59); // 초 수정
 
 // 5. 시간을 여러 포맷으로 출력하기
-console.log(date1.toDateString());
-console.log(date1.toLocaleString());
+console.log(date1.toDateString()); // 시간(시, 분, 초)은 제오하고 현재 날짜만 출력하고 싶을 때
+console.log(date1.toLocaleString()); // 영어 포맷 말고 우리나라에서 사용하는 현지화된 포맷으로 시간을 출력하고 싶을 때
